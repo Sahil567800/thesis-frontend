@@ -36,8 +36,8 @@ export default function Header() {
               key={link.name}
               to={link.href}
               className={`text-sm font-medium transition-colors ${location.pathname === link.href
-                  ? "text-primary font-semibold"
-                  : "text-foreground/80 hover:text-primary"
+                ? "text-primary font-semibold"
+                : "text-foreground/80 hover:text-primary"
                 }`}
             >
               {link.name}
@@ -63,15 +63,19 @@ export default function Header() {
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-border p-5 space-y-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               onClick={() => setMenuOpen(false)}
-              className="block text-sm font-medium hover:text-primary"
+              className={`block text-sm font-medium transition-colors ${location.pathname === link.href
+                  ? "text-primary font-semibold"
+                  : "text-foreground/80 hover:text-primary"
+                }`}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
+
           <Button className="w-full">
             <a href="#contact" onClick={() => setMenuOpen(false)}>
               Get Started
