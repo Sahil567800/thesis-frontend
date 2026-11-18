@@ -1,6 +1,8 @@
 
 import { motion } from "framer-motion";
 import { Button } from "../components/ui/button";
+import bannerImg from '../../public/images/banner/thesis-banner.jpg'
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -13,8 +15,6 @@ import {
   BookOpen,
   GraduationCap,
   FileText,
-  Search,
-  ChartNoAxesCombined,
   ClipboardCheck,
   CheckCircle2,
   ShieldCheck,
@@ -23,52 +23,32 @@ import {
   Award,
   Lightbulb,
   Quote,
-  Menu,
-  X,
   PenLine,
   BookMarked,
   MessageSquareText,
 } from "lucide-react";
-import { useState } from "react";
 
-const services = [
-  {
-    icon: Lightbulb,
-    title: "Research Topic Selection",
-    description:
-      "Get guidance in identifying a focused, relevant and research-worthy topic for your academic project.",
-  },
-  {
-    icon: FileText,
-    title: "Research Proposal",
-    description:
-      "Structure your research objectives, questions, problem statement and proposal with expert guidance.",
-  },
-  {
-    icon: BookOpen,
-    title: "Literature Review",
-    description:
-      "Organize existing research, identify knowledge gaps and develop a well-structured literature review.",
-  },
-  {
-    icon: Search,
-    title: "Research Methodology",
-    description:
-      "Understand research designs, sampling techniques, data collection and appropriate methodologies.",
-  },
-  {
-    icon: ChartNoAxesCombined,
-    title: "Data Analysis Guidance",
-    description:
-      "Get assistance understanding quantitative and qualitative analysis, interpretation and presentation.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Editing & Proofreading",
-    description:
-      "Improve academic language, formatting, structure, grammar and referencing consistency.",
-  },
-];
+
+  const services = [
+    {
+      icon: Lightbulb,
+      title: "Research Topic Selection",
+      description:
+        "Discover a relevant, innovative and research-worthy topic aligned with your academic interests and research goals.",
+    },
+    {
+      icon: FileText,
+      title: "Research Proposal",
+      description:
+        "Develop a well-structured research proposal with clear objectives, research questions, problem statements and scope.",
+    },
+    {
+      icon: BookOpen,
+      title: "Thesis Writing",
+      description:
+        "Get structured guidance throughout your thesis, from chapter organization and literature review to academic presentation.",
+    },
+  ]
 
 const benefits = [
   "Personalized one-to-one academic guidance",
@@ -117,10 +97,7 @@ const stats = [
   { icon: Clock, title: "Flexible", label: "Deadline-aware support" },
 ];
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0 },
-};
+
 
 const stagger = {
   hidden: {},
@@ -128,101 +105,28 @@ const stagger = {
     transition: { staggerChildren: 0.12 },
   },
 };
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0 },
+  };
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Services", href: "#services" },
-    { name: "About", href: "#about" },
-    { name: "Process", href: "#process" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
         
-
-   
-  
-
-      {/* NAVBAR */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
-
-          <a href="#home" className="flex items-center gap-2">
-            <div className="bg-primary text-white p-2.5 rounded-xl">
-              <GraduationCap className="h-7 w-7" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-primary tracking-tight">
-                Atule<span className="text-gold">Writes</span>
-              </h1>
-              <p className="text-[10px] text-muted-foreground tracking-widest uppercase">
-                Academic Research Support
-              </p>
-            </div>
-          </a>
-
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden md:block">
-            <Button size='lg'className="bg-primary w-40 hover:bg-primary/90">
-                Get Started <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
-
-          <button
-            className="md:hidden p-2 text-primary"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle navigation"
-          >
-            {menuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-
-        {menuOpen && (
-          <div className="md:hidden bg-white border-t border-border p-5 space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="block text-sm font-medium hover:text-primary"
-              >
-                {link.name}
-              </a>
-            ))}
-            <Button  className="w-full">
-              <a href="#contact" onClick={() => setMenuOpen(false)}>
-                Get Started
-              </a>
-            </Button>
-          </div>
-        )}
-      </header>
-         <section className="relative flex min-h-[680px] items-center overflow-hidden bg-green-950">
+         <section className="relative flex min-h-170 items-center overflow-hidden bg-green-950">
 
       {/* Background image */}
       <img
-        src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2000"
+        src={bannerImg}
         alt="Student working on academic research"
         className="absolute inset-0 h-full w-full object-cover"
       />
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-green-950/95 via-green-950/80 to-green-950/35" />
+      <div className="absolute inset-0 bg-linear-to-r from-green-950/95 via-green-950/80 to-green-950/35" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 lg:px-10">
@@ -285,33 +189,28 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-10 flex flex-wrap gap-4"
           >
-            <a
-              href="#services"
+            <Link
+              to="/services"
               className="inline-flex items-center gap-3 rounded-lg bg-yellow-400 px-7 py-4 font-semibold text-green-950 transition-all hover:bg-yellow-300 hover:shadow-lg"
             >
               Explore Our Services
               <ArrowRight size={19} />
-            </a>
+            </Link>
 
-            <a
-              href="#contact"
-              className="inline-flex items-center rounded-lg border border-white/60 px-7 py-4 font-semibold text-white transition-all hover:bg-white hover:text-green-950"
-            >
-              Talk to an Expert
-            </a>
+           
           </motion.div>
 
         </div>
       </div>
 
       {/* Bottom decorative accent */}
-      <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-green-700 via-yellow-400 to-green-700" />
+      <div className="absolute bottom-0 left-0 h-1 w-full bg-linear-to-r from-green-700 via-yellow-400 to-green-700" />
 
     </section>
       {/* HERO SECTION */}
       <section id="home" className="relative pt-20 pb-24 lg:pt-28 lg:pb-32">
 
-        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-amber-50/50" />
+        <div className="absolute inset-0 bg-linear-to-br from-green-50 via-white to-amber-50/50" />
 
         <div className="absolute top-20 right-0 w-80 h-80 bg-green-100/50 rounded-full blur-3xl" />
 
@@ -390,7 +289,7 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative bg-gradient-to-br from-green-800 to-green-950 rounded-[2rem] p-8 lg:p-12 shadow-2xl overflow-hidden">
+              <div className="relative bg-linear-to-br from-green-800 to-green-950 rounded-[2rem] p-8 lg:p-12 shadow-2xl overflow-hidden">
 
                 <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/20 rounded-full blur-3xl" />
 
@@ -583,6 +482,7 @@ export default function Home() {
                 </motion.div>
               );
             })}
+            
           </motion.div>
         </div>
       </section>
@@ -797,79 +697,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-green-950 text-white pt-16 pb-8">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8">
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-white/15">
-
-            <div>
-              <div className="flex items-center gap-2 mb-5">
-                <GraduationCap className="h-8 w-8 text-amber-300" />
-                <span className="text-xl font-bold">
-                  Atule<span className="text-amber-300">Writes</span>
-                </span>
-              </div>
-
-              <p className="text-sm text-green-100 leading-relaxed">
-                Supporting students through thoughtful academic guidance,
-                research assistance and professional editing services.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-amber-300 mb-5">
-                Quick Links
-              </h3>
-              <div className="space-y-3 text-sm text-green-100">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="block hover:text-amber-300 transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-amber-300 mb-5">
-                Our Services
-              </h3>
-              <div className="space-y-3 text-sm text-green-100">
-                {services.slice(0, 5).map((service) => (
-                  <a
-                    key={service.title}
-                    href="#services"
-                    className="block hover:text-amber-300 transition-colors"
-                  >
-                    {service.title}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-amber-300 mb-5">
-                Contact
-              </h3>
-              <div className="space-y-3 text-sm text-green-100">
-                <p>info@yourcompany.com</p>
-                <p>+91 XXXXX XXXXX</p>
-                <p>India</p>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 text-xs text-green-200">
-            <p>© {new Date().getFullYear()} AtuleWrites All rights reserved.</p>
-            <p>Built for better academic journeys.</p>
-          </div>
-        </div>
-      </footer>
+     
 
     </div>
   );
